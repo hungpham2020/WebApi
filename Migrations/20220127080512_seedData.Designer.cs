@@ -12,8 +12,8 @@ using WebApi.Model;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220127041511_Identity")]
-    partial class Identity
+    [Migration("20220127080512_seedData")]
+    partial class seedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,22 @@ namespace WebApi.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "1",
+                            Name = "Admin",
+                            NormalizedName = "admin"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "1",
+                            Name = "Staff",
+                            NormalizedName = "staff"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -138,6 +154,13 @@ namespace WebApi.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -224,6 +247,21 @@ namespace WebApi.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "99c92a44-dc4d-4f29-a9f8-80532e94d182",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e40245fd-15c7-4686-b350-d7be5cfe50c3",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("WebApi.Model.TodoItems", b =>

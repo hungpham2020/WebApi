@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Model
@@ -14,18 +15,36 @@ namespace WebApi.Model
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
+            this.SeedUsers(builder);
+            this.SeedRoles(builder);
+            this.SeedUserRoles(builder);
         }
         private void SeedUsers(ModelBuilder builder)
         {
             CustomUser user = new CustomUser()
             {
+                Id = "1",
                 UserName = "Admin",
                 Email = "admin@gmail.com",
                 LockoutEnabled = false,
                 EmailConfirmed = true,
             };
             PasswordHasher<CustomUser> passwordHasher = new PasswordHasher<CustomUser>();
+            passwordHasher.HashPassword(user, "Abc@12345");
+
+            builder.Entity<CustomUser>().HasData(user);
+        }
+
+        private void SeedRoles(ModelBuilder builder)
+        {
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole() { Id = "1", Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "admin" },
+                new IdentityRole() { Id = "2", Name = "Staff", ConcurrencyStamp = "1", NormalizedName = "staff" }
+                );
+        }
+        private void SeedUserRoles(ModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>() { RoleId = "1", UserId = "1" });
         }
     }
 }
