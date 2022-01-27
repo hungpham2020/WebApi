@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220119043612_v1.cs" />
+    <Compile Remove="Migrations\20220119043612_v1.Designer.cs" />
+    <Compile Remove="Migrations\20220125071535_v2.cs" />
+    <Compile Remove="Migrations\20220125071535_v2.Designer.cs" />
+    <Compile Remove="Model\TodoDbContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />

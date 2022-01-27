@@ -10,7 +10,7 @@ using WebApi.Model;
 
 namespace WebApi.Migrations
 {
-    [DbContext(typeof(TodoDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20220125071535_v2")]
     partial class v2
     {

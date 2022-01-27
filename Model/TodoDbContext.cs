@@ -8,6 +8,6 @@ namespace WebApi.Model
         {
 
         }
-        public DbSet<TodoItems> TodoItems { get; set; } = null!;
+        
     }
 }
