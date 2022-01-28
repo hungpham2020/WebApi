@@ -35,13 +35,11 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
 });
-builder.Services.AddCors(config =>
+
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
-    config.AddPolicy("corsapp", builder =>
-    {
-        builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
-    });
-});
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 
 
 var app = builder.Build();
@@ -56,9 +54,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+app.UseCors("corsapp");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.UseCors("corsapp");
 
 app.Run();

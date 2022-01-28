@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -10,6 +11,7 @@ using WebApi.Model.DTO;
 
 namespace WebApi.Controllers
 {
+    [EnableCors("corsapp")]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
