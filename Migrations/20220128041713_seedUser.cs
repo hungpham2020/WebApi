@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApi.Migrations
 {
-    public partial class seedData : Migration
+    public partial class seedUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -177,12 +177,12 @@ namespace WebApi.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2", "1", "Staff", "staff" });
+                values: new object[] { "2", "2", "Staff", "staff" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "99c92a44-dc4d-4f29-a9f8-80532e94d182", "admin@gmail.com", true, false, null, null, null, null, null, false, "e40245fd-15c7-4686-b350-d7be5cfe50c3", false, "Admin" });
+                values: new object[] { "1", 0, "75066b20-7ed8-4461-a9d6-c859b0508130", "admin@gmail.com", true, true, null, null, "admin", "AQAAAAEAACcQAAAAEJnAlhSjklJEfKXeIWdjd+aB9Vzngllc8QKi47IUjevRhcXnf98mk5BjfYHzZjEvPQ==", null, false, "f512485c-4a54-4c89-ada3-4f810fa2eaf3", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

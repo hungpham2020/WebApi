@@ -12,8 +12,8 @@ using WebApi.Model;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220127080512_seedData")]
-    partial class seedData
+    [Migration("20220128041713_seedUser")]
+    partial class seedUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,7 @@ namespace WebApi.Migrations
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "1",
+                            ConcurrencyStamp = "2",
                             Name = "Staff",
                             NormalizedName = "staff"
                         });
@@ -253,12 +253,14 @@ namespace WebApi.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "99c92a44-dc4d-4f29-a9f8-80532e94d182",
+                            ConcurrencyStamp = "75066b20-7ed8-4461-a9d6-c859b0508130",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
+                            NormalizedUserName = "admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJnAlhSjklJEfKXeIWdjd+aB9Vzngllc8QKi47IUjevRhcXnf98mk5BjfYHzZjEvPQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e40245fd-15c7-4686-b350-d7be5cfe50c3",
+                            SecurityStamp = "f512485c-4a54-4c89-ada3-4f810fa2eaf3",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

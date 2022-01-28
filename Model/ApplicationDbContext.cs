@@ -21,16 +21,18 @@ namespace WebApi.Model
         }
         private void SeedUsers(ModelBuilder builder)
         {
+            var passwordHasher = new PasswordHasher<CustomUser>();
             CustomUser user = new CustomUser()
             {
                 Id = "1",
                 UserName = "Admin",
                 Email = "admin@gmail.com",
-                LockoutEnabled = false,
+                NormalizedUserName = "admin",
+                PasswordHash = passwordHasher.HashPassword(null, "Abc@12345"),
+                LockoutEnabled = true,
                 EmailConfirmed = true,
             };
-            PasswordHasher<CustomUser> passwordHasher = new PasswordHasher<CustomUser>();
-            passwordHasher.HashPassword(user, "Abc@12345");
+            
 
             builder.Entity<CustomUser>().HasData(user);
         }
@@ -39,7 +41,7 @@ namespace WebApi.Model
         {
             builder.Entity<IdentityRole>().HasData(
                 new IdentityRole() { Id = "1", Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "admin" },
-                new IdentityRole() { Id = "2", Name = "Staff", ConcurrencyStamp = "1", NormalizedName = "staff" }
+                new IdentityRole() { Id = "2", Name = "Staff", ConcurrencyStamp = "2", NormalizedName = "staff" }
                 );
         }
         private void SeedUserRoles(ModelBuilder builder)
