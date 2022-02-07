@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -56,6 +57,16 @@ namespace WebApi.Controllers
                 });
             }
             return Unauthorized();
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("getuserinfo")]
+        public IActionResult GetUserInfo()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+            return Ok(new { userName = identity?.FindFirst(ClaimTypes.Name)?.Value });
         }
     }
 }
