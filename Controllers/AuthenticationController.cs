@@ -45,7 +45,7 @@ namespace WebApi.Controllers
                 var token = new JwtSecurityToken(
                     issuer: config["JWT:ValidIssuer"],
                     audience: config["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(3),
+                    expires: DateTime.Now.AddMinutes(2),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );

@@ -27,14 +27,14 @@ namespace WebApi.Controllers
 
         // GET: api/TodoItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItems>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<TodoItems>>> GetItem()
         {
             return await _context.TodoItems.ToListAsync();
         }
 
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItems>> GetTodoItems(int id)
+        public async Task<ActionResult<TodoItems>> GetAllItems(int id)
         {
             var todoItems = await _context.TodoItems.FindAsync(id);
 
@@ -49,7 +49,7 @@ namespace WebApi.Controllers
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItems(int id, TodoItems todoItems)
+        public async Task<IActionResult> EditItems(int id, TodoItems todoItems)
         {
             if (id != todoItems.Id)
             {
@@ -80,18 +80,18 @@ namespace WebApi.Controllers
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TodoItems>> PostTodoItems(TodoItems todoItems)
+        public async Task<ActionResult<TodoItems>> AddItems(TodoItems todoItems)
         {
             _context.TodoItems.Add(todoItems);
             await _context.SaveChangesAsync();
 
             //return CreatedAtAction("GetTodoItems", new { id = todoItems.Id }, todoItems);
-            return CreatedAtAction(nameof(GetTodoItems), new {id = todoItems.Id}, todoItems);
+            return CreatedAtAction(nameof(GetItem), new {id = todoItems.Id}, todoItems);
         }
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItems(int id)
+        public async Task<IActionResult> DeleteItems(int id)
         {
             var todoItems = await _context.TodoItems.FindAsync(id);
             if (todoItems == null)
