@@ -27,14 +27,14 @@ namespace WebApi.Controllers
 
         // GET: api/TodoItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItems>>> GetItem()
+        public async Task<ActionResult<IEnumerable<TodoItems>>> GetAllItems()
         {
             return await _context.TodoItems.ToListAsync();
         }
 
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItems>> GetAllItems(int id)
+        public async Task<ActionResult<TodoItems>> GetItem(int id)
         {
             var todoItems = await _context.TodoItems.FindAsync(id);
 
