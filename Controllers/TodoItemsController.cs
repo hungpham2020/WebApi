@@ -12,7 +12,7 @@ using WebApi.Model;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    [Authorize (Roles = "Staff")]
     [Route("api/[controller]")]
     [EnableCors("corsapp")]
     [ApiController]

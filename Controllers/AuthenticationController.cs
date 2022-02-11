@@ -18,11 +18,13 @@ namespace WebApi.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly UserManager<CustomUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration config;
 
-        public AuthenticationController(UserManager<CustomUser> userManager, IConfiguration configuration)
+        public AuthenticationController(UserManager<CustomUser> userManager,RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
             config = configuration;
         }
 
@@ -33,6 +35,7 @@ namespace WebApi.Controllers
             var user = await userManager.FindByNameAsync(model.UserName);
             if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
+                var userRoles = await userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
@@ -40,12 +43,17 @@ namespace WebApi.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
+                foreach (var userRole in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                }
+
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JWT:Secret"]));
 
                 var token = new JwtSecurityToken(
                     issuer: config["JWT:ValidIssuer"],
                     audience: config["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddSeconds(30),
+                    expires: DateTime.Now.AddDays(1),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
@@ -66,7 +74,9 @@ namespace WebApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            return Ok(new { userName = identity?.FindFirst(ClaimTypes.Name)?.Value });
+            return Ok(new { userName = identity?.FindFirst(ClaimTypes.Name)?.Value,
+            userRole = identity?.FindFirst(ClaimTypes.Role)?.Value,
+            });
         }
     }
 }

@@ -12,7 +12,7 @@ using WebApi.Model;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220128041713_seedUser")]
+    [Migration("20220211080340_seedUser")]
     partial class seedUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,6 +160,11 @@ namespace WebApi.Migrations
                         {
                             UserId = "1",
                             RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
                         });
                 });
 
@@ -253,16 +258,31 @@ namespace WebApi.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "75066b20-7ed8-4461-a9d6-c859b0508130",
+                            ConcurrencyStamp = "e729cfc3-be44-4e6d-8214-645e75122347",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = true,
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJnAlhSjklJEfKXeIWdjd+aB9Vzngllc8QKi47IUjevRhcXnf98mk5BjfYHzZjEvPQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDUSoCs/rmpmy1rkcm+NICkCrZSSDAB26xe0Td/L4I9dC16KbmK8/r1x/FexsYRGLg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f512485c-4a54-4c89-ada3-4f810fa2eaf3",
+                            SecurityStamp = "0dc2c7d5-d0eb-4698-8411-ee79828bd0ff",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "01cd1ca7-3587-44a9-b6d3-626aa4c76b10",
+                            Email = "staff@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedUserName = "staff",
+                            PasswordHash = "AQAAAAEAACcQAAAAEExpf2UaixKhGKUqtI+rF4ce5SzJ38OhOt5L7iPodaOMiBXc3rklg/oIZ/4i/rOIgg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f7a97842-7cad-4664-871b-aa798e21dfcd",
+                            TwoFactorEnabled = false,
+                            UserName = "Staff"
                         });
                 });
 

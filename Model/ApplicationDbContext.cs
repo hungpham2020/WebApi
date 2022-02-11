@@ -32,9 +32,20 @@ namespace WebApi.Model
                 LockoutEnabled = true,
                 EmailConfirmed = true,
             };
-            
+            CustomUser user2 = new CustomUser()
+            {
+                Id = "2",
+                UserName = "Staff",
+                Email = "staff@gmail.com",
+                NormalizedUserName = "staff",
+                PasswordHash = passwordHasher.HashPassword(null, "Abc@12345"),
+                LockoutEnabled = true,
+                EmailConfirmed = true,
+            };
+
 
             builder.Entity<CustomUser>().HasData(user);
+            builder.Entity<CustomUser>().HasData(user2);
         }
 
         private void SeedRoles(ModelBuilder builder)
@@ -47,6 +58,7 @@ namespace WebApi.Model
         private void SeedUserRoles(ModelBuilder builder)
         {
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>() { RoleId = "1", UserId = "1" });
+            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>() { RoleId = "2", UserId = "2" });
         }
     }
 }
