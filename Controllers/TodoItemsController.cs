@@ -12,7 +12,7 @@ using WebApi.Model;
 
 namespace WebApi.Controllers
 {
-    [Authorize (Roles = "Staff")]
+    [Authorize]
     [Route("api/[controller]")]
     [EnableCors("corsapp")]
     [ApiController]
@@ -79,6 +79,7 @@ namespace WebApi.Controllers
 
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<TodoItems>> AddItems(TodoItems todoItems)
         {

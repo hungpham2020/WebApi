@@ -74,8 +74,9 @@ namespace WebApi.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
 
-            return Ok(new { userName = identity?.FindFirst(ClaimTypes.Name)?.Value,
-            userRole = identity?.FindFirst(ClaimTypes.Role)?.Value,
+            return Ok(new { 
+                userName = identity?.FindFirst(ClaimTypes.Name)?.Value,
+                userRole = identity?.FindFirst(ClaimTypes.Role)?.Value,
             });
         }
     }
